@@ -15,19 +15,14 @@ public class Haushalt {
 
     private Person person;
 
-    private Map<Integer, Person> persons;
 
-    private Tier tier;
-
-    public Haushalt(Haushalt house,Person person){
+    public Haushalt(){}
+    public Haushalt(Haushalt house){
 
         this(house.getHouseId(),house.getHouseNum(), house.getCity(), house.getAddress(), house.getZip());
-        this.person = person;
 
     }
-    public Haushalt(Haushalt house){
-        this(house.getHouseId(),house.getHouseNum(),house.getCity(),house.getAddress(), house.getZip());
-    }
+
     public Haushalt(int houseId,int houseNum,String city,String address,int zip){
         this.houseId = houseId;
         this.houseNum = houseNum;
@@ -85,13 +80,6 @@ public class Haushalt {
         this.person = person;
     }
 
-    public Tier getTier() {
-        return tier;
-    }
-
-    public void setTier(Tier tier) {
-        this.tier = tier;
-    }
 
     @Override
     public String toString() {
@@ -101,7 +89,6 @@ public class Haushalt {
                 ", address='" + address + '\'' +
                 ", houseNum=" + houseNum +
                 ", zip=" + zip +
-                ", person=" + person +
                 '}';
     }
 }

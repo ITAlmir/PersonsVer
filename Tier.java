@@ -2,23 +2,37 @@ package org.example;
 
 public class Tier {
 
-    private Integer tierId;
+    private int tierId;
     private String race;
     private String tierName;
+    private int personId;
+    public Tier(){}
 
-    private Person owner;
-
-    public Tier(int tier_id,String race,String tierName){
+    public Tier(int tier_id,String race,String tierName,int personId){
         this.tierId = tier_id;
         this.race = race;
         this.tierName = tierName;
-    }
-    public Tier(Tier animal,Person owner){
-        this(animal.tierId, animal.race, animal.tierName);
+        this.personId = personId;
     }
 
     public int getTier_id() {
         return tierId;
+    }
+
+    public Integer getTierId() {
+        return tierId;
+    }
+
+    public void setTierId(Integer tierId) {
+        this.tierId = tierId;
+    }
+
+    public int getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(int personId) {
+        this.personId = personId;
     }
 
     public void setTier_id(int tier_id) {
@@ -27,6 +41,10 @@ public class Tier {
 
     public String getRace() {
         return race;
+    }
+
+    public void setTierId(int tierId) {
+        this.tierId = tierId;
     }
 
     public void setRace(String race) {
@@ -44,9 +62,10 @@ public class Tier {
     @Override
     public String toString() {
         return "Tier{" +
-                "tier_id=" + tierId +
+                "tierId=" + tierId +
                 ", race='" + race + '\'' +
                 ", tierName='" + tierName + '\'' +
+                ", personId=" + personId +
                 '}';
     }
 }

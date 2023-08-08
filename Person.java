@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Person {
 
-    private Integer personId;
+    private int personId;
 
     private String firstName;
 
@@ -13,20 +13,29 @@ public class Person {
 
     private String birthDate;
 
+    private int houseId;
+
     private Haushalt haushalt;
 
-    private Map<Integer,Tier> tiere;
-
-    public Person(int personId,String firstName,String lastName,String birthDate){
+    public Person(){}
+    public Person(int personId,String firstName,String lastName,String birthDate,int houseId){
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.tiere = new HashMap<>();
+        this.houseId = houseId;
     }
-    public Person(Person person, Map<Integer, Tier> tiere){
-        this(person.getPersonId(), person.getFirstName(), person.getLastName(), person.getBirthDate());
-        this.tiere = tiere;
+
+    public int getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(int houseId) {
+        this.houseId = houseId;
+    }
+
+    public Person(Person person){
+        this(person.getPersonId(), person.getFirstName(), person.getLastName(), person.getBirthDate(), person.getHouseId());
     }
 
 
@@ -75,14 +84,6 @@ public class Person {
         this.haushalt = haushalt;
     }
 
-    public Map<Integer, Tier> getTiere() {
-        return tiere;
-    }
-
-    public void setTiere(Map<Integer, Tier> tiere) {
-        this.tiere = tiere;
-    }
-
     @Override
     public String toString() {
         return "Person{" +
@@ -90,7 +91,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthDate='" + birthDate + '\'' +
-                ", tier=" + tiere +
+                ", houseId=" + houseId +
                 '}';
     }
 }
