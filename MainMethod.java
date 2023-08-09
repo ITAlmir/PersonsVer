@@ -46,83 +46,107 @@ while (on) {
 
     switch (choice) {
         case 1:
-            System.out.println("Enter a house id");
-            houseId = sc.nextInt();
-            System.out.println("Enter a house number");
-            houseNum = sc.nextInt();
-
-            System.out.println("Enter city");
-            sc.nextLine();
-            city = sc.nextLine();
-            System.out.println("Enter address");
-            address = sc.nextLine();
-            System.out.println("Enter zip code");
-            zip = sc.nextInt();
-
-            houseManagement.createHouse(houseId, houseNum, city, address, zip);
+            try {
+                houseManagement.createHouse();
+                houseManagement.showAllHouses();
+            }catch (Exception e){
+                System.out.println("Can't do !!!");
+            }
             break;
         case 2:
-            System.out.println("In which House live this person");
-            houseId = sc.nextInt();
-            System.out.println("Enter personID");
-            personId = sc.nextInt();
-            System.out.println("Enter first name");
-            sc.nextLine();
-            firstName = sc.nextLine();
-            System.out.println("Enter last name");
-            lastName = sc.nextLine();
-            System.out.println("Enter birth date ");
-            birthDate = sc.nextLine();
+            try {
+                houseManagement.showAllHouses();
+                houseManagement.createPerson();
+                houseManagement.showAllPersons();
+            }catch (Exception e){
+                System.out.println("No Way !!!");
+            }
 
-            houseManagement.createPerson(houseId, personId, firstName, lastName, birthDate,houseId);
             break;
         case 3:
-            System.out.println("Enter id for this pet");
-            petId = sc.nextInt();
-            System.out.println("Who does this pet belong to?");
-            personId = sc.nextInt();
-            System.out.println("Enter pet's race");
-            sc.nextLine();
-            tierRace = sc.nextLine();
-            System.out.println("Enter name for this pet ");
-            tierName = sc.nextLine();
-            houseManagement.createPet(petId,tierRace,tierName,personId);
+            try {
+                houseManagement.showAllPersons();
+                houseManagement.createPet();
+                houseManagement.showAllPets();
+            }catch (Exception e){
+                System.out.println("Never happened !!!");
+            }
             break;
         case 4:
-            System.out.println("Enter house ID");
-            houseId = sc.nextInt();
-            houseManagement.findHouse(houseId);
+            try {
+                houseManagement.findHouse();
+            }catch (Exception e){
+                System.out.println("Nope !");
+            }
             break;
         case 5:
-            System.out.println("Enter person ID");
-            sc.nextLine();
-            personId = sc.nextInt();
-            houseManagement.findPerson(personId);
+            try {
+                houseManagement.findPerson();
+            }catch (Exception e){
+                System.out.println("No Sir !!");
+            }
             break;
         case 6:
-            System.out.println("Enter pet ID");
-            petId = sc.nextInt();
-            houseManagement.findPet(petId);
+            try {
+                houseManagement.findPet();
+            }catch (Exception e){
+                System.out.println("Nooooo !");
+            }
             break;
         case 7:
-            System.out.println("Enter house ID which you want to update");
-            houseId = sc.nextInt();
-            houseManagement.updateHouse(houseId);
+            try {
+                houseManagement.showAllHouses();
+                houseManagement.updateHouse();
+                houseManagement.showAllHouses();
+            }catch (Exception e){
+                System.out.println("Wrong !");
+            }
             break;
         case 8:
+            try {
+                houseManagement.showAllPersons();
+                houseManagement.updatePerson();
+                houseManagement.showAllPersons();
+            }catch (Exception e){
+                System.out.println("Wrong !!");
+            }
 
             break;
         case 9:
-
+            try {
+                houseManagement.showAllPets();
+                houseManagement.updatePet();
+                houseManagement.showAllPets();
+            }catch (Exception e){
+                System.out.println("Don't be stupid");
+            }
             break;
         case 10:
-
+            try {
+                houseManagement.showAllHouses();
+                houseManagement.deleteHouse();
+                houseManagement.showAllHouses();
+            }catch (Exception e){
+                System.out.println("Goats can't fly");
+            }
             break;
         case 11:
-
+            try {
+                houseManagement.showAllPersons();
+                houseManagement.deletePerson();
+                houseManagement.showAllPersons();
+            }catch (Exception e){
+                System.out.println("No...try again !");
+            }
             break;
         case 12:
-
+            try {
+                houseManagement.showAllPets();
+                houseManagement.deletePet();
+                houseManagement.showAllPets();
+            }catch (Exception e){
+                System.out.println(" Invalid !!");
+            }
             break;
         default:
             System.out.println("Invalid choice");

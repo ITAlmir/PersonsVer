@@ -14,4 +14,6 @@ public interface PersonDao {
             throws java.sql.SQLException;
     public void updatePerson(Person pers)
             throws SQLException;
+    public void getAllPersons()
+                 throws SQLException;
 }

@@ -25,6 +25,12 @@ public class Person {
         this.birthDate = birthDate;
         this.houseId = houseId;
     }
+    public Person(String firstName,String lastName,String birthDate,int houseId){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.houseId = houseId;
+    }
 
     public int getHouseId() {
         return houseId;

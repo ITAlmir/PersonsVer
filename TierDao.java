@@ -14,4 +14,6 @@ public interface TierDao {
             throws java.sql.SQLException;
     public void updatePet(Tier pet)
             throws SQLException;
+    public void showAllPets()
+            throws SQLException;
 }

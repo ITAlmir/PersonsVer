@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.Haushalt;
-import org.example.DatabaseConnection;
-
 public class HaushaltDaoImplementation implements HaushaltDao{
     static Connection con
             = DatabaseConnection.getConnection();
@@ -94,14 +91,55 @@ public class HaushaltDaoImplementation implements HaushaltDao{
     public void update(Haushalt hshl) throws SQLException {
         String query
                 = "update haushalt set houseNum=?, "
-                + " city= ?,"+"address=?, "+"zip=? where emp_id = ?";
+                + " city= ?,"+"address=?, "+"zip=? where haushalt_id = ?";
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setInt(1, hshl.getHouseNum());
         ps.setString(2, hshl.getCity());
         ps.setString(3, hshl.getAddress());
         ps.setInt(4, hshl.getZip());
+        ps.setInt(5, hshl.getHouseId());
+
 
         ps.executeUpdate();
+    }
+    public void getAllHaushalt() throws SQLException {
+        String query
+                = "select * from haushalt";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+
+        char ch = '-';
+        String repeatedChars = String.valueOf(ch).repeat(73);
+        System.out.printf(repeatedChars);
+        System.out.println();
+
+        System.out.printf("%-4s | %-10s | %-10s | %-30s | %-10s%n", "id", "houseNum", "city", "address", "zip");
+        System.out.printf(repeatedChars);
+        System.out.println();
+        while (resultSet.next()) {
+            // Retrieve column values for the current row
+            int id = resultSet.getInt("haushalt_id");
+            int houseNum = resultSet.getInt("houseNum");
+            String city = resultSet.getString("city");
+            String address = resultSet.getString("address");
+            String zip = resultSet.getString("zip");
+
+
+            // Retrieve other columns as needed
+
+            // Print column values for the current row
+            System.out.printf("%-4s | %-10s | %-10s | %-30s | %-10s%n", id, houseNum, city, address, zip);
+
+            // Print other columns as needed
+            //------------------------------------------------------------
+
+        }
+        System.out.println();
+        System.out.printf(repeatedChars);
+        System.out.println();
+        resultSet.close();
+        preparedStatement.close();
     }
 }

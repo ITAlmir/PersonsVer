@@ -54,7 +54,7 @@ public class PersonDaoImplementation implements PersonDao {
 
         while (rs.next()) {
             check = true;
-            pers.setHouseId(rs.getInt("person_id"));
+            pers.setPersonId(rs.getInt("person_id"));
             pers.setFirstName(rs.getString("first_name"));
             pers.setLastName(rs.getString("last_name"));
             pers.setBirthDate(rs.getString("birth_date"));
@@ -62,11 +62,6 @@ public class PersonDaoImplementation implements PersonDao {
         }
 
         if (check == true) {
-            System.out.println(pers.getPersonId());
-            System.out.println(pers.getFirstName());
-            System.out.println(pers.getLastName());
-            System.out.println(pers.getBirthDate());
-            System.out.println(pers.getHouseId());
             return pers;
         }
         else
@@ -83,7 +78,7 @@ public class PersonDaoImplementation implements PersonDao {
 
         while (rs.next()) {
             Person pers = new Person();
-            pers.setHouseId(rs.getInt("haushalt_id"));
+            pers.setPersonId(rs.getInt("person_id"));
             pers.setFirstName(rs.getString("first_name"));
             pers.setLastName(rs.getString("last_name"));
             pers.setBirthDate(rs.getString("birth_date"));
@@ -97,14 +92,54 @@ public class PersonDaoImplementation implements PersonDao {
     public void updatePerson(Person pers) throws SQLException {
         String query
                 = "update person set first_name=?, "
-                + " last_name= ?,"+"birth_date=?,"+"person_id where emp_id = ?";
+                + " last_name= ?,"+"birth_date=?, "+"houseId=? where person_id = ?";
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, pers.getFirstName());
         ps.setString(2, pers.getLastName());
         ps.setString(3, pers.getBirthDate());
-        ps.setInt(4, pers.getPersonId());
+        ps.setInt(4, pers.getHouseId());
+        ps.setInt(5, pers.getPersonId());
 
         ps.executeUpdate();
+    }
+    public void getAllPersons() throws SQLException {
+        String query
+                = "select * from person";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+
+        char ch = '-';
+        String repeatedChars = String.valueOf(ch).repeat(73);
+        System.out.printf(repeatedChars);
+        System.out.println();
+
+        System.out.printf("%-4s | %-10s | %-10s | %-30s | %-10s%n", "id", "First Name", "Last Name", "Birth Date", "Living at");
+        System.out.printf(repeatedChars);
+        System.out.println();
+        while (resultSet.next()) {
+            // Retrieve column values for the current row
+            int id = resultSet.getInt("person_id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String birthDate = resultSet.getString("birth_date");
+            int houseId = resultSet.getInt("houseId");
+
+
+            // Retrieve other columns as needed
+
+            // Print column values for the current row
+            System.out.printf("%-4s | %-10s | %-10s | %-30s | %-10s%n", id, firstName, lastName, birthDate, houseId);
+
+            // Print other columns as needed
+            //------------------------------------------------------------
+
+        }
+        System.out.println();
+        System.out.printf(repeatedChars);
+        System.out.println();
+        resultSet.close();
+        preparedStatement.close();
     }
 }

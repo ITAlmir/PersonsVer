@@ -13,9 +13,6 @@ public class Haushalt {
 
     private int zip;
 
-    private Person person;
-
-
     public Haushalt(){}
     public Haushalt(Haushalt house){
 
@@ -30,6 +27,12 @@ public class Haushalt {
         this.address = address;
         this.zip = zip;
 
+    }
+    public Haushalt(int houseNum,String city,String address,int zip){
+        this.houseNum = houseNum;
+        this.city = city;
+        this.address = address;
+        this.zip = zip;
     }
 
     public int getHouseId() {
@@ -72,13 +75,7 @@ public class Haushalt {
         this.zip = zip;
     }
 
-    public Person getPerson() {
-        return person;
-    }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
 
     @Override

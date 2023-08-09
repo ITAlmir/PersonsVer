@@ -57,10 +57,6 @@ public class TierDaoImplementation implements TierDao {
         }
 
         if (check == true) {
-            System.out.println(tier.getTierId());
-            System.out.println(tier.getRace());
-            System.out.println(tier.getTierName());
-            System.out.println(tier.getPersonId());
             return tier;
         } else
             return null;
@@ -89,11 +85,52 @@ public class TierDaoImplementation implements TierDao {
     public void updatePet(Tier pet) throws SQLException {
         String query
                 = "update tiere set race=?, "
-                + " pet_name= ?,";
+                + " pet_name= ?,"+"person_id=? where tier_id = ?";
         PreparedStatement ps
                 = con.prepareStatement(query);
         ps.setString(1, pet.getRace());
-        ps.setString(2, pet.getRace());
+        ps.setString(2, pet.getTierName());
+        ps.setInt(3, pet.getPersonId());
+        ps.setInt(4, pet.getTier_id());
+
+
         ps.executeUpdate();
+    }
+    public void showAllPets() throws SQLException{
+        String query
+                = "select * from tiere";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        char ch = '-';
+        String repeatedChars = String.valueOf(ch).repeat(73);
+        System.out.printf(repeatedChars);
+        System.out.println();
+
+        System.out.printf("%-4s | %-15s | %-15s |  %-10s%n", "id", "Race", "Pet's Name", "Owner");
+        System.out.printf(repeatedChars);
+        System.out.println();
+        while (resultSet.next()) {
+            // Retrieve column values for the current row
+            int id = resultSet.getInt("tier_id");
+            String race = resultSet.getString("race");
+            String petName = resultSet.getString("pet_name");
+            int personId = resultSet.getInt("person_id");
+
+
+            // Retrieve other columns as needed
+
+            // Print column values for the current row
+            System.out.printf("%-4s | %-15s | %-15s | %-10s%n", id, race, petName, personId);
+
+            // Print other columns as needed
+            //------------------------------------------------------------
+
+        }
+        System.out.println();
+        System.out.printf(repeatedChars);
+        System.out.println();
+        resultSet.close();
+        preparedStatement.close();
     }
 }

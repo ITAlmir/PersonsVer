@@ -14,6 +14,11 @@ public class Tier {
         this.tierName = tierName;
         this.personId = personId;
     }
+    public Tier(String race,String tierName,int personId){
+        this.race = race;
+        this.tierName = tierName;
+        this.personId = personId;
+    }
 
     public int getTier_id() {
         return tierId;
