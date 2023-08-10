@@ -1,31 +1,17 @@
 package org.example;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class HouseManagement {
 
-     private Map<Integer,Haushalt> mapHouse;
 
-     private Map<Integer,Person> mapPerson;
-
-     private Map<Integer,Tier> mapTier;
 
     HaushaltDaoImplementation houseDao = new HaushaltDaoImplementation();
     PersonDaoImplementation personsDao = new PersonDaoImplementation();
     TierDaoImplementation petsDao = new TierDaoImplementation();
-    public HouseManagement(){
-        mapHouse = new HashMap<>();
 
-        mapPerson = new HashMap<>();
-
-        mapTier = new HashMap<>();
-    }
     public void createHouse() throws SQLException {
         Scanner sc = new Scanner(System.in);
 
@@ -41,9 +27,9 @@ public class HouseManagement {
         System.out.println("Enter zip code");
         int zip = sc.nextInt();
         Haushalt houseObj = new Haushalt(houseNum,city,address,zip);
-        mapHouse.put(0,houseObj);
+        //mapHouse.put(0,houseObj);
         houseDao.add(houseObj);
-        System.out.println("You added new House with values: "+mapHouse.get(0).getHouseNum()+","+mapHouse.get(0).getCity()+","+mapHouse.get(0).getAddress()+"," +mapHouse.get(0).getZip());
+        System.out.println("You added new House with values: "+houseObj.getHouseNum()+","+houseObj.getCity()+","+houseObj.getAddress()+"," +houseObj.getZip());
     }
     public void createPerson() throws SQLException {
         Scanner sc = new Scanner(System.in);
@@ -60,10 +46,8 @@ public class HouseManagement {
 
         Person personObj = new Person(firstName,lastName,birthDate,houseId);
 
-        mapPerson.put(0,personObj);
-        System.out.println(mapPerson);
         personsDao.addPerson(personObj,houseId);
-        System.out.println("You added new Person with values: "+mapPerson.get(0).getFirstName()+","+mapPerson.get(0).getLastName()+","+mapPerson.get(0).getBirthDate()+"," +mapPerson.get(0).getHouseId());
+        System.out.println("You added new Person with values: "+personObj.getFirstName()+","+personObj.getLastName()+","+personObj.getBirthDate()+"," +personObj.getHouseId());
 
     }
     public void createPet() throws SQLException {
@@ -78,9 +62,9 @@ public class HouseManagement {
         System.out.println("Enter name for this pet ");
         String tierName = sc.nextLine();
         Tier tierObj = new Tier(tierRace,tierName,personId);
-        mapTier.put(0,tierObj);
+        //mapTier.put(0,tierObj);
         petsDao.addPet(tierObj,personId);
-        System.out.println("You added new Pet with values: "+mapTier.get(0).getRace()+","+mapTier.get(0).getTierName()+","+mapTier.get(0).getPersonId());
+        System.out.println("You added new Pet with values: "+tierObj.getRace()+","+tierObj.getTierName()+","+tierObj.getPersonId());
 
     }
     public void findHouse() throws SQLException {
@@ -233,36 +217,6 @@ public class HouseManagement {
     public void showAllPets() throws SQLException {
         petsDao.showAllPets();
     }
-    public Map<Integer, Haushalt> getMapHouse() {
-        return mapHouse;
-    }
 
-    public void setMapHouse(Map<Integer, Haushalt> mapHouse) {
-        this.mapHouse = mapHouse;
-    }
 
-    public Map<Integer, Person> getMapPerson() {
-        return mapPerson;
-    }
-
-    public void setMapPerson(Map<Integer, Person> mapPerson) {
-        this.mapPerson = mapPerson;
-    }
-
-    public Map<Integer, Tier> getMapTier() {
-        return mapTier;
-    }
-
-    public void setMapTier(Map<Integer, Tier> mapTier) {
-        this.mapTier = mapTier;
-    }
-
-    @Override
-    public String toString() {
-        return "HouseManagement{" +
-                "mapHouse=" + mapHouse +
-                ", mapPerson=" + mapPerson +
-                ", mapTier=" + mapTier +
-                '}';
-    }
 }

@@ -14,11 +14,6 @@ public class Haushalt {
     private int zip;
 
     public Haushalt(){}
-    public Haushalt(Haushalt house){
-
-        this(house.getHouseId(),house.getHouseNum(), house.getCity(), house.getAddress(), house.getZip());
-
-    }
 
     public Haushalt(int houseId,int houseNum,String city,String address,int zip){
         this.houseId = houseId;

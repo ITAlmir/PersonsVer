@@ -15,8 +15,6 @@ public class Person {
 
     private int houseId;
 
-    private Haushalt haushalt;
-
     public Person(){}
     public Person(int personId,String firstName,String lastName,String birthDate,int houseId){
         this.personId = personId;
@@ -80,14 +78,6 @@ public class Person {
 
     public void setPersonId(Integer personId) {
         this.personId = personId;
-    }
-
-    public Haushalt getHaushalt() {
-        return haushalt;
-    }
-
-    public void setHaushalt(Haushalt haushalt) {
-        this.haushalt = haushalt;
     }
 
     @Override
